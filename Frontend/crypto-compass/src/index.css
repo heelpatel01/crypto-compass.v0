@@ -21,3 +21,19 @@
   color: aqua;
   background-color: rgb(0, 0, 0);
 }
+
+.verticalTabContent{
+  color: black;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.coinIcon{
+  height: 5vh;
+  
+}
+
+.verticalTabContent{
+  margin-left: 2vw;
+}
