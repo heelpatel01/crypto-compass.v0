@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+                #popup {
+                  display: none;
+                  position: absolute;
+                  background-color: white;
+                  border: 1px solid #ccc;
+                  padding: 10px;
+                  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                  width: 200px;
+                }
+                
+                button[popovertarget="popup"]:focus + #popup {
+                  display: block;
+                }
+                </style>
+                
+</head>
+
+
+<body>
+        <button popovertarget="popup">
+                Open Popup
+        </button>
+
+        <div id="popup" popover>This is a popup</div>
+</body>
+
+</html>
