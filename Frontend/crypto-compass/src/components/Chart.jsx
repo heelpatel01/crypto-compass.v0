@@ -11,7 +11,6 @@ export default function Chart({ coinMarketData }) {
   const prices = coinMarketData.map(point => point[1]);
 
   return (
-    <div style={{ paddingLeft: '20px', marginLeft: '20px', overflow: 'visible' }}>
       <LineChart
         xAxis={[{ data: dates }]}
         series={[
@@ -27,7 +26,7 @@ export default function Chart({ coinMarketData }) {
         height={300}
         margin={{ left: 80 }} // Increase this value as needed
       />
-    </div>
+    
   );
 }
 

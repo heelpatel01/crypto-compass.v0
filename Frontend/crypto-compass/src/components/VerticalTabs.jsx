@@ -105,13 +105,14 @@ export default function VerticalTabs() {
      borderRight: 1,
      borderColor: "divider",
      height: "100vh",
-     minWidth: "200px",
+     minWidth: "10.417vw",
     }}
    >
     {coinDetails.map((coin, index) => (
      <Tab key={coin.id} label={coin.name} />
     ))}
    </Tabs>
+   <div style={{ display: 'flex', flexDirection: 'column'}}>
 
    {coinDetails.map((coin, index) => (
     <TabPanel value={value} index={index} key={coin.id}>
@@ -121,9 +122,9 @@ export default function VerticalTabs() {
    ))}
 
 
-   <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+   {/* <div style={{ display: 'flex', flexDirection: 'column'}}> */}
 
-   <div style={{  paddingLeft: '20px', marginLeft:'20px' }}>
+   <div>
     <Chart coinMarketData={coinMarketData} />
    </div>
 
