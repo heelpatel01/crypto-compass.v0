@@ -14,6 +14,7 @@ import Portfolio from "./portfolio/Portfolio.jsx";
 import Login from "./login/Login.jsx";
 import { BrowserRouter } from "react-router-dom";
 import Exchange from "./exchange/Exchange.jsx";
+import Chronology from "./components/Chronology.jsx";
 
 // const router = createBrowserRouter([
 //  {
@@ -42,6 +43,7 @@ const router1 = createBrowserRouter(
         <Route path="portfolio" element={<Portfolio />}/>
         <Route path="login" element={<Login />}/>
         <Route path="exchange" element={<Exchange />}/>
+        <Route path="chrono" element={<Chronology />}/>
  </Route>)
 );
 
