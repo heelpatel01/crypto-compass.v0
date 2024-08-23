@@ -15,6 +15,7 @@ import Login from "./login/Login.jsx";
 import { BrowserRouter } from "react-router-dom";
 import Exchange from "./exchange/Exchange.jsx";
 import Chronology from "./components/Chronology.jsx";
+import Signup from "./signup/Signup.jsx";
 
 // const router = createBrowserRouter([
 //  {
@@ -40,10 +41,12 @@ import Chronology from "./components/Chronology.jsx";
 const router1 = createBrowserRouter(
  createRoutesFromElements(<Route path="/" element={<Layout />}>
         <Route path="" element={<Home />}/>
+        <Route path="home" element={<Home />}/>
         <Route path="portfolio" element={<Portfolio />}/>
         <Route path="login" element={<Login />}/>
         <Route path="exchange" element={<Exchange />}/>
         <Route path="chrono" element={<Chronology />}/>
+        <Route path="signup" element={<Signup />}/>
  </Route>)
 );
 

@@ -44,7 +44,7 @@ export default function VerticalTabs() {
   };
 
   fetch(
-   `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=inr&days=30`,
+   `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=inr&days=240`,
    options
   )
    .then((response) => response.json())

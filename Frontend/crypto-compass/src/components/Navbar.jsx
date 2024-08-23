@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,212 +11,177 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import logoImage from "../assets/Crypto-Compass-Logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
- const [home, setHome] = useState(true);
- const [portfolio, setPortfolio] = useState(false);
- const [coins, setCoint] = useState([]);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
- const pages = ["Home", "Portfolio", "Blogs"];
- const settings = ["login", "profile"];
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
- // mui
- const [anchorElNav, setAnchorElNav] = useState(null);
- const [anchorElUser, setAnchorElUser] = useState(null);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
- const handleOpenNavMenu = (event) => {
-  setAnchorElNav(event.currentTarget);
- };
- const handleOpenUserMenu = (event) => {
-  setAnchorElUser(event.currentTarget);
- };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
- const handleCloseNavMenu = () => {
-  setAnchorElNav(null);
- };
+  const pages = ["Home","Exchange", "Portfolio","Login"];
+  const settings = ["Login", "Profile"];
 
- const handleCloseUserMenu = () => {
-  setAnchorElUser(null);
- };
+  return (
+    <AppBar
+      position="static"
+      sx={{
+        background: "linear-gradient(90deg, #1B1F3A, #2C003E)",
+        color: "#E0E0E0",
+      }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component={NavLink}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontWeight: 700,
+              fontFamily: "unset",
+              color: "#F5F5F5",
+              textDecoration: "none",
+            }}
+          >
+            CRYPTO COMPASS
+          </Typography>
 
- return (
-  <div>
-   <AppBar position="static" sx={{ backgroundColor: "red", color: "white" }}>
-    <Container maxWidth="xl">
-     <Toolbar disableGutters>
-      {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-      {/* //logo */}
+          {/* Mobile Menu */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography
+                    component={NavLink}
+                    to={`/${page.toLowerCase()}`}
+                    sx={{ textDecoration: "none", color: "#E0E0E0" }}
+                  >
+                    {page}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
 
-      <Typography
-       variant="h6"
-       noWrap
-       component="a"
-       sx={{
-        mr: 2,
-        display: { xs: "none", md: "flex" },
-        fontWeight: 700,
-        fontFamily: "unset",
-        color: "inherit",
-        textDecoration: "none",
-       }}
-      >
-       CRYPTO COMPASS
-      </Typography>
+          {/* Desktop Menu */}
+          <Typography
+            variant="h5"
+            noWrap
+            component={NavLink}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "unset",
+              fontWeight: 700,
+              color: "#F5F5F5",
+              textDecoration: "none",
+            }}
+          >
+            CRYPTO COMPASS
+          </Typography>
 
-      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-       <IconButton
-        size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleOpenNavMenu}
-        color="inherit"
-       >
-        <MenuIcon />
-       </IconButton>
-       <Menu
-        id="menu-appbar"
-        anchorEl={anchorElNav}
-        anchorOrigin={{
-         vertical: "bottom",
-         horizontal: "left",
-        }}
-        keepMounted
-        transformOrigin={{
-         vertical: "top",
-         horizontal: "left",
-        }}
-        open={Boolean(anchorElNav)}
-        onClose={handleCloseNavMenu}
-        sx={{
-         display: { xs: "block", md: "none" },
-        }}
-       >
-        <MenuItem key="Home" onClick={handleCloseNavMenu}>
-         <Typography textAlign="center">
-          <NavLink to="/">Home</NavLink>
-         </Typography>
-        </MenuItem>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                component={NavLink}
+                to={`/${page.toLowerCase()}`}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "#E0E0E0",
+                  display: "block",
+                  textDecoration: "none",
+                }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
 
-        <MenuItem key="Exchange" onClick={handleCloseNavMenu}>
-         <Typography textAlign="center">
-          <NavLink to="/exchange">Exchange</NavLink>
-         </Typography>
-        </MenuItem>
-
-        <MenuItem key="Portfolio" onClick={handleCloseNavMenu}>
-         <Typography textAlign="center">
-          <NavLink to="/portfolio">Portfolio</NavLink>
-         </Typography>
-        </MenuItem>
-
-        <MenuItem key="Login" onClick={handleCloseNavMenu}>
-         <Typography textAlign="center">
-          <NavLink to="/login">Login</NavLink>
-         </Typography>
-        </MenuItem>
-       </Menu>
-      </Box>
-      {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
-      <Typography
-       variant="h5"
-       noWrap
-       component="a"
-       sx={{
-        mr: 2,
-        display: { xs: "flex", md: "none" },
-        flexGrow: 1,
-        fontFamily: "unset",
-        fontWeight: 700,
-        color: "inherit",
-        textDecoration: "none",
-       }}
-      >
-       CRYPTO COMPASS
-      </Typography>
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-       {/* {pages.map((page) => (
-        <Button
-         key={page}
-         onClick={handleCloseNavMenu}
-         sx={{ my: 2, color: "white", display: "block" }}
-        >
-        <NavLink>
-        {page}
-        </NavLink>
-         
-        </Button> */}
-
-       <Button onClick={handleCloseNavMenu}>
-        <NavLink to="/" activeClassName="Active" className={()=>{}}>
-         Home
-        </NavLink>
-       </Button>
-
-       <Button onClick={handleCloseNavMenu}>
-        <NavLink
-         to="/exchange"
-         activeClassName="Active"
-         className={"NavButtons"}
-        >
-         Exchange
-        </NavLink>
-       </Button>
-
-       <Button onClick={handleCloseNavMenu}>
-        <NavLink
-         to="/portfolio"
-         activeClassName="Active"
-         className={"NavButtons"}
-        >
-         Portfolio
-        </NavLink>
-       </Button>
-
-       <Button onClick={handleCloseNavMenu}>
-        <NavLink to="/login" activeClassName="Active" className={"NavButtons"}>
-         Login
-        </NavLink>
-       </Button>
-      </Box>
-
-      <Box sx={{ flexGrow: 0 }}>
-       <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-        </IconButton>
-       </Tooltip>
-       <Menu
-        sx={{ mt: "45px" }}
-        id="menu-appbar"
-        anchorEl={anchorElUser}
-        anchorOrigin={{
-         vertical: "top",
-         horizontal: "right",
-        }}
-        keepMounted
-        transformOrigin={{
-         vertical: "top",
-         horizontal: "right",
-        }}
-        open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
-       >
-        {settings.map((setting) => (
-         <MenuItem key={setting} onClick={handleCloseUserMenu}>
-          <Typography textAlign="center">{setting}</Typography>
-         </MenuItem>
-        ))}
-       </Menu>
-      </Box>
-     </Toolbar>
-    </Container>
-   </AppBar>
-  </div>
- );
+          {/* User Settings */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="User Avatar" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography
+                    component={NavLink}
+                    to={`/${setting.toLowerCase()}`}
+                    sx={{ textDecoration: "none", color: "#E0E0E0" }}
+                  >
+                    {setting}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
 
 export default Navbar;
